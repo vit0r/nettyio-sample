@@ -18,8 +18,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 /**
- *
- * @author Vitor
+  * @author Vitor
  */
 public class Server {
 
