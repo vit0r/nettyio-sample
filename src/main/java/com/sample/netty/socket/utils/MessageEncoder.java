@@ -22,5 +22,4 @@ public class MessageEncoder extends MessageToByteEncoder<String> {
             out.writeCharSequence(msg, Charset.defaultCharset());
         }
     }
-
 }

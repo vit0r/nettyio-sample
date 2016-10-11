@@ -5,10 +5,8 @@
  */
 package com.sample.netty.socket.client;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.util.ReferenceCountUtil;
 
 /**
  *
@@ -18,18 +16,8 @@ class ClientHandlerInbound extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-         ByteBuf in = (ByteBuf) msg;
-        try {
-            StringBuilder sb = new StringBuilder();
-            while (in.isReadable()) {
-                sb.append(in.readByte());
-            }
-            System.out.println("[CLIENT] Recebe mensagem ->"+sb.toString());
-            System.out.flush();
-        } finally {
-            ReferenceCountUtil.release(msg);
-            ReferenceCountUtil.release(in);
-        }
+        System.out.println("[CLIENT] Recebe mensagem ->" + msg.toString());
+        System.out.flush();
     }
 
     @Override

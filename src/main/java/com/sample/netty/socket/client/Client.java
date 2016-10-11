@@ -5,6 +5,7 @@
  */
 package com.sample.netty.socket.client;
 
+import com.sample.netty.socket.utils.MessageDecoder;
 import com.sample.netty.socket.utils.MessageEncoder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -14,7 +15,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.string.StringDecoder;
 
 /**
  *
@@ -34,7 +34,7 @@ public class Client {
             b.handler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 public void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(new StringDecoder(), new ClientHandlerInbound());
+                    ch.pipeline().addLast(new MessageDecoder(), new ClientHandlerInbound());
                     ch.pipeline().addLast(new MessageEncoder(), new ClientHandlerOutbound());
                 }
             });

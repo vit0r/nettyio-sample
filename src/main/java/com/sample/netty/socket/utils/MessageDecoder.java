@@ -21,6 +21,10 @@ public class MessageDecoder extends ByteToMessageDecoder {
         if (in.readableBytes() < 4) {
             return;
         }
-        out.add(in.readBytes(4));
+        StringBuilder sb = new StringBuilder();
+        while (in.isReadable()) {
+            sb.append(in.readByte());
+        }
+        out.add(sb.toString());
     }
 }
