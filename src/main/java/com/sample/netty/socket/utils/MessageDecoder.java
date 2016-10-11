@@ -23,7 +23,7 @@ public class MessageDecoder extends ByteToMessageDecoder {
         }
         StringBuilder sb = new StringBuilder();
         while (in.isReadable()) {
-            sb.append(in.readByte());
+            sb.append((char)in.readByte());
         }
         out.add(sb.toString());
     }

@@ -24,6 +24,7 @@ public class ServerHandlerInbound extends ChannelInboundHandlerAdapter {
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         System.out.println("[SERVER] processa mensagem ->"+ctx.fireChannelReadComplete().name());
         System.out.flush();
+        ctx.writeAndFlush("Replay message");
     }
 
     @Override
