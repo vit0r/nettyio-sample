@@ -39,7 +39,7 @@ public class Client {
                 }
             });
             ChannelFuture f = b.connect(host, port).sync();
-            f.channel().writeAndFlush(String.format("Usuário '%s'", System.getProperties().getProperty("user.name")));
+            f.channel().writeAndFlush(String.format("Usuário = '%s'", System.getProperties().getProperty("user.name")));
             f.channel().closeFuture().sync();
         } finally {
             workerGroup.shutdownGracefully();
