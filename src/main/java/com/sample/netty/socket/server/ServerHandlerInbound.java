@@ -7,6 +7,8 @@ package com.sample.netty.socket.server;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -14,17 +16,16 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
  */
 public class ServerHandlerInbound extends ChannelInboundHandlerAdapter {
 
+    static final Logger LOG = LoggerFactory.getLogger(ServerHandlerInbound.class);
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        System.out.println("[SERVER] Recebe mensagem ->"+msg);
-        System.out.flush();
+        LOG.trace("[SERVER] Recebe mensagem ->" + msg);
     }
-    
+
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("[SERVER] processa mensagem ->"+ctx.fireChannelReadComplete().name());
-        System.out.flush();
-        ctx.writeAndFlush("Replay message");
+        LOG.trace("[SERVER] processa mensagem ->" + ctx.fireChannelReadComplete().name());
     }
 
     @Override

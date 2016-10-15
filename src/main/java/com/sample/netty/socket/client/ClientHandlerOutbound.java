@@ -9,6 +9,8 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelOutboundHandlerAdapter;
 import io.netty.channel.ChannelPromise;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -16,12 +18,14 @@ import io.netty.channel.ChannelPromise;
  */
 public class ClientHandlerOutbound extends ChannelOutboundHandlerAdapter {
 
+    static final Logger LOG = LoggerFactory.getLogger(ClientHandlerOutbound.class);
+    
     @Override
     public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) {
         ByteBuf encoded = ctx.alloc().buffer(4);
         encoded.writeBytes(((String)msg).getBytes());
         ctx.writeAndFlush(encoded, promise);
-        System.err.println("[CLIENT SEND MENSSAGE] "+msg);
+        LOG.trace("[CLIENT SEND MENSSAGE] "+msg);
     }
 
     @Override

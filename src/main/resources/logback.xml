@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+ 
+    <appender name="SYSTEM-OUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </layout>
+    </appender>
+    
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">                                                                                                                                                              
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">                                                                                                                                                                
+            <fileNamePattern>sample-log-%d{yyyy-MM-dd}.log</fileNamePattern>                                                                                                                                                                     
+            <maxHistory>7</maxHistory>                                                                                                                                                                                                              
+        </rollingPolicy>
+        <encoder>                                                                                                                                                                                                                                 
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>                                                                                                                                                             
+        </encoder>                                                                                                                                                                                                                                
+    </appender> 
+    
+    <logger name="com.base22" level="TRACE"/>
+           
+    <root level="debug">
+        <appender-ref ref="SYSTEM-OUT" />
+    </root>
+    
+    <root level="error">
+        <appender-ref ref="FILE" />
+    </root>
+    
+    <root level="info">
+        <appender-ref ref="SYSTEM-OUT" />
+    </root>
+    
+    <root level="trace">
+        <appender-ref ref="SYSTEM-OUT" />
+        <appender-ref ref="FILE" />
+    </root>
+    
+</configuration>
